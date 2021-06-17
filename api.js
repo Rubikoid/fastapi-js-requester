@@ -1,3 +1,10 @@
+async function get_json(resp) {
+    if (!resp.ok) {
+        throw new Error(`HTTP error, status: ${resp.status}<br>${await resp.text()}`);
+    }
+    return { json: await resp.json(), resp: resp };
+}
+
 async function req(
     endpoint,
     {
@@ -31,18 +38,8 @@ async function req(
         }
     );
 
-    //try {
-
     const resp = await fetch(req);
-    /* if (!resp.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-    } */
-    return await resp.json();
-
-    /*}
-    catch (error) {
-        console.error('Fetch error:', error);
-    }*/
+    return resp;
 }
 
 async function preq(
