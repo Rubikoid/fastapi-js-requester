@@ -17,6 +17,7 @@ async function req(
     {
         get_data = undefined,
         data = undefined,
+        json = undefined,
         method = 'POST',
         headers = new Headers({ 'Content-Type': 'application/json' }),
         mode = 'cors',
@@ -41,7 +42,7 @@ async function req(
             redirect: redirect,
             referrer: referrer,
             integrity: integrity,
-            body: data ? JSON.stringify(data) : data,
+            body: json ? JSON.stringify(json) : data,
         }
     );
 
