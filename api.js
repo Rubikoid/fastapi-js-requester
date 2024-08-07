@@ -5,6 +5,13 @@ async function get_json(resp) {
     return { json: await resp.json(), resp: resp };
 }
 
+async function get_text(resp) {
+    if (!resp.ok) {
+        throw new Error(`HTTP error, status: ${resp.status}<br>${await resp.text()}`);
+    }
+    return { text: await resp.text(), resp: resp };
+}
+
 async function req(
     endpoint,
     {
